@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Rebuild Lab logo">
+  <defs>
+    <linearGradient id="rb" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22D3EE"/>
+      <stop offset="100%" stop-color="#0EA5E9"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="32" fill="#0B1220"/>
+  <g transform="translate(256,256)">
+    <path d="M-96 -120 h120 a24 24 0 0 1 24 24 v72 h40 a24 24 0 0 1 24 24 v48 a24 24 0 0 1 -24 24 h-88 v32 a24 24 0 0 1 -24 24 h-72 a24 24 0 0 1 -24 -24 v-224 a24 24 0 0 1 24 -24z" fill="url(#rb)" opacity="0.95"/>
+    <rect x="-40" y="-24" width="168" height="48" rx="12" fill="#091426" stroke="#1F6FEB" stroke-width="3"/>
+  </g>
+  <g font-family="Inter, Helvetica, Arial, sans-serif" font-weight="800" text-anchor="middle" fill="#E6F3FF">
+    <text x="256" y="420" font-size="48" letter-spacing="1">REBUILD LAB</text>
+  </g>
+</svg>
