@@ -19,6 +19,19 @@
       }
     }
   </script>
+  <!-- PLAUSIBLE_DOMAIN_PLACEHOLDER: set your domain below, then uncomment the script tag. -->
+  <!-- <script defer data-domain="YOUR-DOMAIN.example" src="https://plausible.io/js/script.js"></script> -->
+  <script>
+    // Lightweight click tracking; safe if Plausible isn't loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      const fire = (name, props={}) => {
+        if (window.plausible) window.plausible(name, { props });
+      };
+      document.querySelectorAll('[data-event]').forEach(el => {
+        el.addEventListener('click', () => fire(el.getAttribute('data-event')));
+      });
+    });
+  </script>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased">
   <!-- Nav -->
@@ -34,7 +47,7 @@
         <a href="#how" class="hover:text-white">How it works</a>
         <a href="#pricing" class="hover:text-white">Pricing</a>
         <a href="#faq" class="hover:text-white">FAQ</a>
-        <a href="#checkout" class="px-3 py-1.5 rounded-md bg-brand-500 text-slate-900 font-semibold hover:bg-brand-400">Start Pilot</a>
+        <a id="nav-start-pilot" href="#checkout" data-event="nav_start_pilot" class="px-3 py-1.5 rounded-md bg-brand-500 text-slate-900 font-semibold hover:bg-brand-400">Start Pilot</a>
       </nav>
     </div>
   </header>
@@ -51,7 +64,7 @@
           We open small, CI‑friendly pull requests: fix broken Markdown links, normalize Prettier/ESLint, and ship low‑risk hygiene updates that keep your repo healthy.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#checkout" class="px-5 py-3 rounded-lg bg-brand-400 text-slate-900 font-semibold shadow-lg shadow-brand-400/20 hover:bg-brand-300">Start 7‑day pilot</a>
+          <a id="hero-start-pilot" href="#checkout" data-event="hero_start_pilot" class="px-5 py-3 rounded-lg bg-brand-400 text-slate-900 font-semibold shadow-lg shadow-brand-400/20 hover:bg-brand-300">Start 7‑day pilot</a>
           <a href="#how" class="px-5 py-3 rounded-lg border border-white/10 text-slate-200 hover:bg-white/5">See how it works</a>
         </div>
         <p class="mt-3 text-sm text-slate-400">No risky refactors. Rollback guaranteed on request.</p>
@@ -112,19 +125,22 @@
           <h3 class="font-semibold">Starter</h3>
           <p class="text-3xl font-bold mt-2">$149<span class="text-base font-normal text-slate-400">/mo</span></p>
           <p class="text-sm text-slate-300 mt-1">Up to 5 PRs / month</p>
-          <a href="#checkout" class="mt-5 inline-block px-4 py-2 rounded-lg border border-white/10 hover:bg-white/5">Get started</a>
+          <!-- Will be replaced by scripts/wire-stripe-links.js when TEST links are available -->
+          <a id="btn-starter" href="#checkout" data-event="checkout_click_starter" class="mt-5 inline-block px-4 py-2 rounded-lg border border-white/10 hover:bg-white/5">Get started</a>
         </div>
         <div class="p-6 rounded-2xl bg-brand-500/10 ring-2 ring-brand-400">
           <h3 class="font-semibold">Standard</h3>
           <p class="text-3xl font-bold mt-2">$399<span class="text-base font-normal text-slate-400">/mo</span></p>
           <p class="text-sm text-slate-300 mt-1">Up to 15 PRs / month</p>
-          <a href="#checkout" class="mt-5 inline-block px-4 py-2 rounded-lg bg-brand-400 text-slate-900 font-semibold hover:bg-brand-300">Start pilot</a>
+          <!-- Will be replaced by scripts/wire-stripe-links.js when TEST links are available -->
+          <a id="btn-standard" href="#checkout" data-event="checkout_click_standard" class="mt-5 inline-block px-4 py-2 rounded-lg bg-brand-400 text-slate-900 font-semibold hover:bg-brand-300">Start pilot</a>
         </div>
         <div class="p-6 rounded-2xl bg-white/5 ring-1 ring-white/10">
           <h3 class="font-semibold">Plus</h3>
           <p class="text-3xl font-bold mt-2">$999<span class="text-base font-normal text-slate-400">/mo</span></p>
           <p class="text-sm text-slate-300 mt-1">Unlimited within guardrails</p>
-          <a href="#checkout" class="mt-5 inline-block px-4 py-2 rounded-lg border border-white/10 hover:bg-white/5">Talk to us</a>
+          <!-- Will be replaced by scripts/wire-stripe-links.js when TEST links are available -->
+          <a id="btn-plus" href="#checkout" data-event="checkout_click_plus" class="mt-5 inline-block px-4 py-2 rounded-lg border border-white/10 hover:bg-white/5">Talk to us</a>
         </div>
       </div>
       <p class="mt-4 text-sm text-slate-400">One‑time setup: $199. Only safe autofixes; instant rollback if requested.</p>
@@ -159,12 +175,19 @@
   <!-- Checkout -->
   <section id="checkout" class="border-t border-white/5 bg-slate-950">
     <div class="max-w-6xl mx-auto px-4 py-16">
+      <!-- Stripe TEST links config injection point. Copy ops/stripe/links.json.test.autofix.*.link_url values here when available. -->
+      <script id="stripe-test-links" type="application/json">{
+        "test": { "autofix": { "setup": { "link_url": "" }, "tiers": { "tier_a": { "link_url": "" }, "tier_b": { "link_url": "" }, "tier_c": { "link_url": "" } } } }
+      }</script>
+      <script src="scripts/wire-stripe-links.js"></script>
       <div class="rounded-2xl border border-white/10 p-6 bg-gradient-to-br from-slate-950 to-slate-900">
         <h2 class="text-2xl font-semibold">Ready to try the 7‑day pilot?</h2>
         <p class="mt-2 text-slate-300">Pick a time to align goals, then we’ll send a secure link to connect a repo and open the first dry‑run PR.</p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a class="px-5 py-3 rounded-lg bg-brand-400 text-slate-900 font-semibold hover:bg-brand-300" href="https://cal.com/your-handle/agentops-sprint" target="_blank" rel="noopener">Book a 15‑min call</a>
-          <a class="px-5 py-3 rounded-lg border border-white/10 hover:bg-white/5" href="https://buy.stripe.com/test_XXXXXXXX" target="_blank" rel="noopener">Pay setup ($199)</a>
+          <a id="btn-book-call" data-event="book_call_clicked" class="px-5 py-3 rounded-lg bg-brand-400 text-slate-900 font-semibold hover:bg-brand-300" href="https://cal.com/your-handle/agentops-sprint" target="_blank" rel="noopener">Book a 15‑min call</a>
+          <a id="btn-waitlist" data-event="waitlist_clicked" class="px-5 py-3 rounded-lg border border-white/10 hover:bg-white/5" href="waitlist.html">Join waitlist</a>
+          <!-- TEST Payment Links will appear here when available: scripts/wire-stripe-links.js populates below -->
+          <span id="checkout-links" class="hidden"></span>
         </div>
       </div>
       <p class="mt-6 text-xs text-slate-500">© 2026 Zero Human Company — AgentOrchestrator</p>

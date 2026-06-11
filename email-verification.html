@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email Verification for AI Agents — Deterministic JSON, Confidence Bands</title>
+  <meta name="description" content="API-first email deliverability verification built for agent tool-calls and orchestrators. Deterministic JSON responses with reason codes and confidence bands. Unknowns aren’t billed." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { brand: {50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',300:'#67e8f9',400:'#22d3ee',500:'#06b6d4',600:'#0891b2',700:'#0e7490',800:'#155e75',900:'#164e63'} } } }
+    }
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased">
+  <!-- Nav -->
+  <header class="sticky top-0 z-30 backdrop-blur border-b border-white/10 bg-slate-950/70">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="h-8 w-8 rounded-lg bg-brand-500/20 ring-1 ring-brand-400/30 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-brand-300"><path d="M2 6a2 2 0 012-2h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6zm3 1l7 5 7-5H5z"/></svg>
+        </div>
+        <span class="font-semibold tracking-tight">Zero Human Company</span>
+      </div>
+      <nav class="hidden sm:flex items-center gap-6 text-sm text-slate-300">
+        <a href="#how" class="hover:text-white">How it works</a>
+        <a href="#pricing" class="hover:text-white">Pricing</a>
+        <a href="#faq" class="hover:text-white">FAQ</a>
+        <a href="#checkout" class="px-3 py-1.5 rounded-md bg-brand-500 text-slate-900 font-semibold hover:bg-brand-400">Get API key</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-900/40 via-slate-900 to-slate-950"></div>
+    <div class="relative max-w-6xl mx-auto px-4 py-20 sm:py-28">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl font-bold leading-tight tracking-tight">Email Verification for AI Agents</h1>
+        <p class="mt-4 text-lg text-slate-300">Deterministic JSON. Clear reason codes and confidence bands. Unknowns aren’t billed. Built for tool-calling and orchestrators.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#checkout" class="px-5 py-3 rounded-lg bg-brand-400 text-slate-900 font-semibold shadow-lg shadow-brand-400/20 hover:bg-brand-300">Get API key</a>
+          <a href="#docs" class="px-5 py-3 rounded-lg border border-white/10 text-slate-200 hover:bg-white/5">Explore docs</a>
+        </div>
+        <p class="mt-3 text-sm text-slate-400">Keep hard bounces under 2% and protect domain reputation with agent-friendly responses.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof / Trust -->
+  <section class="border-t border-white/5 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 py-10">
+      <p class="text-sm uppercase tracking-widest text-slate-400 mb-4">Why it’s different</p>
+      <div class="grid sm:grid-cols-3 gap-4 text-slate-300">
+        <div class="p-3 rounded-md bg-white/5">Unknowns not billed by default</div>
+        <div class="p-3 rounded-md bg-white/5">Open accuracy methodology & mini-benchmark</div>
+        <div class="p-3 rounded-md bg-white/5">Confidence bands + backoff hints for autonomy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-3xl font-semibold tracking-tight">How it works</h2>
+      <div class="mt-6 grid sm:grid-cols-3 gap-6">
+        <div class="p-5 rounded-xl bg-white/5 ring-1 ring-white/10">
+          <h3 class="font-semibold">1) Syntax & DNS</h3>
+          <p class="mt-1 text-slate-300 text-sm">RFC syntax + normalization, DNS/MX lookup and provider heuristics.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white/5 ring-1 ring-white/10">
+          <h3 class="font-semibold">2) SMTP handshake</h3>
+          <p class="mt-1 text-slate-300 text-sm">Greylist-aware probing, catch‑all detection, domain risk signals.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white/5 ring-1 ring-white/10">
+          <h3 class="font-semibold">3) Deterministic response</h3>
+          <p class="mt-1 text-slate-300 text-sm">deliverable, reason, riskScore, confidence, and billed=false for unknowns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code sample -->
+  <section id="docs" class="border-t border-white/5 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-3xl font-semibold tracking-tight">OpenAI tool-call example</h2>
+      <pre class="mt-4 p-4 rounded-lg bg-black/40 text-sm overflow-auto"><code>{
+  "name": "verify_email",
+  "description": "Verify email deliverability with reason and confidence scores.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "email": {"type": "string"},
+      "resolveCatchAll": {"type": "boolean", "default": false}
+    },
+    "required": ["email"]
+  }
+}</code></pre>
+      <p class="mt-3 text-slate-400 text-sm">Full OpenAPI spec coming soon. See internal docs for draft endpoints.</p>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="border-t border-white/5 bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-3xl font-semibold tracking-tight">Pricing (beta)</h2>
+      <div class="mt-8 grid sm:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-white/5 ring-1 ring-white/10">
+          <h3 class="font-semibold">Free dev</h3>
+          <p class="text-3xl font-bold mt-2">100<span class="text-base font-normal text-slate-400">/mo</span></p>
+          <p class="text-sm text-slate-300 mt-1">Unknowns aren’t billed</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-brand-500/10 ring-2 ring-brand-400">
+          <h3 class="font-semibold">Starter</h3>
+          <p class="text-3xl font-bold mt-2">$9<span class="text-base font-normal text-slate-400">/mo</span></p>
+          <p class="text-sm text-slate-300 mt-1">1,500 verifications</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 ring-1 ring-white/10">
+          <h3 class="font-semibold">Usage</h3>
+          <p class="text-3xl font-bold mt-2">$30<span class="text-base font-normal text-slate-400">/10k</span></p>
+          <p class="text-sm text-slate-300 mt-1">Volume breaks at 50k+ and 250k+</p>
+        </div>
+      </div>
+      <p class="mt-4 text-sm text-slate-400">Credits never expire. GDPR/CCPA-ready. DPA available.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-3xl font-semibold tracking-tight">FAQ</h2>
+      <div class="mt-6 grid sm:grid-cols-2 gap-6">
+        <div class="p-5 rounded-xl bg-white/5 ring-1 ring-white/10">
+          <h3 class="font-semibold">Do you store emails?</h3>
+          <p class="mt-1 text-slate-300 text-sm">No raw email persistence by default; hashed logs only with optional verbose mode.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white/5 ring-1 ring-white/10">
+          <h3 class="font-semibold">Data residency?</h3>
+          <p class="mt-1 text-slate-300 text-sm">EU/US on request. GDPR/CCPA-ready; DPA available.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white/5 ring-1 ring-white/10">
+          <h3 class="font-semibold">What about catch-alls?</h3>
+          <p class="mt-1 text-slate-300 text-sm">We return catch_all reason deterministically. Optional resolveCatchAll pass can probe further.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white/5 ring-1 ring-white/10">
+          <h3 class="font-semibold">Latency targets?</h3>
+          <p class="mt-1 text-slate-300 text-sm">P50 &lt; 500 ms for single-verify. Bulk is async with webhooks/polling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Checkout -->
+  <section id="checkout" class="border-t border-white/5 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <div class="rounded-2xl border border-white/10 p-6 bg-gradient-to-br from-slate-950 to-slate-900">
+        <h2 class="text-2xl font-semibold">Ready to try the API?</h2>
+        <p class="mt-2 text-slate-300">Dev is free. Starter is $9/mo. You’ll get an API key instantly and can explore the endpoints in Postman.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a class="px-5 py-3 rounded-lg bg-brand-400 text-slate-900 font-semibold hover:bg-brand-300" href="https://buy.stripe.com/test_PLACEHOLDER" target="_blank" rel="noopener">Get API key (Stripe test)</a>
+          <a class="px-5 py-3 rounded-lg border border-white/10 hover:bg-white/5" href="../products/email-verification/README.md" target="_blank" rel="noopener">View internal docs</a>
+        </div>
+      </div>
+      <p class="mt-6 text-xs text-slate-500">© 2026 Zero Human Company — Email Verification API</p>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Autofix Assistant — Waitlist</title>
+  <meta name="description" content="Join the Autofix Assistant pilot waitlist. We open small, safe PRs that improve repo hygiene without breaking CI." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { brand: {50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',300:'#67e8f9',400:'#22d3ee',500:'#06b6d4',600:'#0891b2',700:'#0e7490',800:'#155e75',900:'#164e63'} } } } }
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased">
+  <header class="sticky top-0 z-30 backdrop-blur border-b border-white/10 bg-slate-950/70">
+    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="h-8 w-8 rounded-lg bg-brand-500/20 ring-1 ring-brand-400/30 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-brand-300"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 5a1 1 0 00-2 0v5a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L13 11.586V7z"/></svg>
+        </div>
+        <span class="font-semibold tracking-tight">Autofix Assistant</span>
+      </div>
+      <nav class="hidden sm:flex items-center gap-6 text-sm text-slate-300">
+        <a href="/index.html" class="hover:text-white">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold tracking-tight">Join the pilot waitlist</h1>
+    <p class="mt-3 text-slate-300">No spam. We’ll email you a short form and a calendar link to line up a 15‑minute kickoff. You can opt to grant a scoped token for a dry‑run PR only after we align on scope.</p>
+
+    <div class="mt-8 grid gap-4">
+      <a href="mailto:hello@zerohuman.company?subject=Autofix%20Pilot%20Waitlist&body=Hi%20Zero%20Human%20Company%2C%0A%0AI%20want%20to%20join%20the%20Autofix%20Assistant%20pilot.%20Here%27s%20my%20repo%20URL(s)%3A%0A-%20%0A%0APreferred%20start%20date%3A%0A%0AThanks!" class="px-5 py-3 rounded-lg bg-brand-400 text-slate-900 font-semibold w-fit hover:bg-brand-300">Email us to join</a>
+      <a href="#typeform" class="px-5 py-3 rounded-lg border border-white/10 w-fit hover:bg-white/5">Fill quick form (coming soon)</a>
+    </div>
+
+    <p class="mt-8 text-sm text-slate-500">Or email us directly at <a class="underline" href="mailto:hello@zerohuman.company">hello@zerohuman.company</a></p>
+  </main>
+
+  <footer class="max-w-3xl mx-auto px-4 pb-10">
+    <p class="mt-6 text-xs text-slate-500">© 2026 Zero Human Company — AgentOrchestrator</p>
+  </footer>
+</body>
+</html>
