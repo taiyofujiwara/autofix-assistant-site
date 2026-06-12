@@ -176,9 +176,7 @@
   <section id="checkout" class="border-t border-white/5 bg-slate-950">
     <div class="max-w-6xl mx-auto px-4 py-16">
       <!-- Stripe TEST links config injection point. Copy ops/stripe/links.json.test.autofix.*.link_url values here when available. -->
-      <script id="stripe-test-links" type="application/json">{
-        "test": { "autofix": { "setup": { "link_url": "" }, "tiers": { "tier_a": { "link_url": "" }, "tier_b": { "link_url": "" }, "tier_c": { "link_url": "" } } } }
-      }</script>
+      <script id="stripe-test-links" type="application/json">{"test":{"autofix":{"setup":{"link_url":""},"tiers":{"tier_a":{"link_url":""},"tier_b":{"link_url":""},"tier_c":{"link_url":""}}}}}</script>
       <script src="scripts/wire-stripe-links.js"></script>
       <div class="rounded-2xl border border-white/10 p-6 bg-gradient-to-br from-slate-950 to-slate-900">
         <h2 class="text-2xl font-semibold">Ready to try the 7‑day pilot?</h2>
